@@ -1,0 +1,14 @@
+$("#pubBtn").on("click",funtion(){
+	var boardNo = ${"#boardNo"}; 
+	var title = ${"#title"};
+	var content = ${"#content"}; 
+	var writer = ${"#writer"};
+	
+	var boardNoVal = boardNo.val();
+	var contentVal = content.val();
+	var writerVal = writer.val();
+	
+	
+}
+
+)

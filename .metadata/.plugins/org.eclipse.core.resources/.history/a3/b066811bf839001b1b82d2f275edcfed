@@ -1,0 +1,83 @@
+package com.devproject.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.java.Log;
+
+@Log
+@Controller
+@RequestMapping("/board")
+public class BoardController {
+	@GetMapping(value = "/get", params="register")
+	// 게시글 작성 화면 이동
+	public String registerForm() {
+		log.info("registForm");
+		return "success";
+	}
+
+	@PostMapping(value = "/post", params="register")
+	// 게시글 작성
+	public String register() {
+		log.info("regist");
+		return "success";
+	}
+
+	@GetMapping(value = "/get", params="modify")
+	// 게시글 수정 화면 이동
+	public String modifyForm() {
+		log.info("modifyForm");
+		return "success";
+	}
+
+	
+	
+	@PutMapping(value= "/{boardNo}")
+	public ResponseEntity<String> modify(@PathVariable("boardNo") int boardNo,@ResponseBody Board board){
+		return entity;
+	}
+
+	@GetMapping(value = "/get", params="remove")
+	// 게시글 삭제 화면 이동
+	public String removeForm() {
+		log.info("removeForm");
+		return "success";
+	}
+	
+	@PostMapping(value = "/post", params="remove")
+	// 게시글 삭제
+	public String remove() {
+		log.info("remove");
+		return "success";
+	}
+
+	@GetMapping(value = "/list")
+	// 게시글 목록
+	public String list() {
+		log.info("success");
+		return "board/list";
+	}
+
+	@RequestMapping(value = "/read/{boardNo}", params="read")
+	// 게시글 읽기
+	// 게시글 번호는 '/경로/{게시글 번호 변수}'
+	public String read(@PathVariable("boardNo") int boardNo) {
+		log.info("read boardNo" + boardNo);
+
+		return "board/read";
+	}
+
+	@RequestMapping(value = "/read2/{no}")
+	// 게시글 읽기
+	// 게시글 번호는 '/경로/{게시글 번호 변수}'
+	public String read2(@PathVariable("no") int boardNo) {
+		log.info("read2 boardNo" + boardNo);
+
+		return "board/read";
+	}
+}
