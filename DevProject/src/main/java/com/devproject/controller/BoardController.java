@@ -40,18 +40,29 @@ public class BoardController {
 		return "success";
 	}
 
-	@PutMapping(value= "/{boardNo}")
-	public ResponseEntity<String> modify(@PathVariable("boardNo") int boardNo,@RequestBody Board board){
-		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
-		return entity;
-	}
 	
-	@PutMapping(value= "/{boardNo}", headers="X-HTTP-Method-Override=Put")
-	public ResponseEntity<String> modifyByHeader(@PathVariable("boardNo") int boardNo,@RequestBody Board board){
+	@PostMapping(value= "/{boardNo}")
+	public ResponseEntity<String> modify(@PathVariable("boardNo") int boardNo,@RequestBody Board board){
+		log.info("modify");
 		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		return entity;
 	}
 
+	@PutMapping(value= "/{boardNo}", consumes="application/xml")
+	public ResponseEntity<String> modifyByHeader(@PathVariable("boardNo") int boardNo,@RequestBody Board board){
+		log.info("modifyByHeader boardNo"+boardNo);
+		log.info("modifyByHeader"+board);
+		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		return entity;
+	}
+
+	@PutMapping(value= "/{boardNo}", consumes="application/json")
+	public ResponseEntity<String> modifyByJson(@PathVariable("boardNo") int boardNo,@RequestBody Board board){
+		log.info("modifyByJson");
+		ResponseEntity<String> entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+		return entity;
+	}
+	
 	@GetMapping(value = "/get", params="remove")
 	// 게시글 삭제 화면 이동
 	public String removeForm() {
